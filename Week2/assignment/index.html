@@ -42,14 +42,15 @@
         var reloadButton = document.querySelector(`#reload-button`)
         var reloadDisplay = document.querySelector(`#reload-display`)
         var reloadAmount = 0
+        var tempCurrentAmmo = 0
         
         //Variables used to set up the gun and inventory values
         //Maximum amount of ammo the weapon can hold
-        var max = 25
+        var max = 6
         //Amount of ammo currently loaded into the weapon
         var currentAmmo = max
         //Amount of ammo in the character's inventory
-        var inventory = 50
+        var inventory = 12
 
         //Changes the words between <span> and </span> for each span element
         triggerDisplay.innerHTML = `AMMO: ${currentAmmo}`
@@ -91,13 +92,21 @@
 
         function reload(event)
         {
+            reloadAmount = max - currentAmmo
+
             if(inventory>reloadAmount)
-                reloadAmount = max - currentAmmo
+            {
                 currentAmmo = max;
                 triggerDisplay.innerHTML = `AMMO: ${currentAmmo}`
                 inventory = inventory - reloadAmount
                 reloadDisplay.innerHTML = `INVENTORY: ${inventory}`
-            
+            }else {
+                tempCurrentAmmo = currentAmmo
+                currentAmmo = tempCurrentAmmo + inventory
+                triggerDisplay.innerHTML = `AMMO: ${currentAmmo}`
+                inventory= 0
+                reloadDisplay.innerHTML= `OUT OF AMMO`
+            }
         }
     </script>
 </body>
