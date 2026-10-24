@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7 Assignment 1 | Drawing Shapes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800">
+
+    </canvas>
+    <script src="script.js"></script>
+
+
+    <script>
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(85, 302, 100, 100);
+            ctx.strokeStyle= "black";
+            ctx.lineWidth = 5.0;
+            ctx.strokeRect(85, 302, 100, 100);
+
+            ctx.fillStyle = "#ffff00";
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 5.0;
+            ctx.beginPath();
+            ctx.arc(385, 442, 65, 0, 360);
+            ctx.fill();
+            ctx.stroke();
+            
+            ctx.strokeStyle = "rgb(255,0,0)";
+            ctx.lineWidth = 5.0;
+            ctx.beginPath();
+            ctx.moveTo(83,683);
+            ctx.lineTo(275, 550);
+            ctx.stroke();
+
+            ctx.fillStyle = "#ff00ff";
+            ctx.strokeStyle = "00ffff";
+            ctx.lineWidth = 5.0;
+            ctx.beginPath();
+            ctx.moveTo(557,308);
+            ctx.lineTo(668, 285);
+            ctx.lineTo(724, 380);
+            ctx.lineTo(650, 465);
+            ctx.lineTo(548, 420);
+            ctx.lineTo(557, 308);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = "#ffff00";
+            ctx.strokeStyle = "rgb(32,32,32)";
+            ctx.lineWidth = 5.0;
+            ctx.beginPath();
+            ctx.moveTo(635, 496);
+            ctx.lineTo(668, 555);
+            ctx.lineTo(732, 567);
+            ctx.lineTo(688, 617);
+            ctx.lineTo(695, 681);
+            ctx.lineTo(635, 653);
+            ctx.lineTo(576, 680);
+            ctx.lineTo(582, 617);
+            ctx.lineTo(538, 567);
+            ctx.lineTo(600, 555);
+            ctx.lineTo(635, 496);
+
+            ctx.fill();
+            ctx.stroke();
+
+
+            </script>
+
+</body>
+</html>
