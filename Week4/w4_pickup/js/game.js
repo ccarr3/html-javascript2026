@@ -105,7 +105,7 @@ function main()
         /*----------INSTRUCTION------------
         increase the score by one
         -----------------------------------*/
-        var score= score += 1
+        score = score += 1
     }
 
     for(var i=0; i<pickups.length; i++)
@@ -113,7 +113,16 @@ function main()
         /*----------INSTRUCTION------------
         make the avatar "collect" the pickups and increase the score
         -----------------------------------*/
-        
+        if(pickups[i].overlaps(avatar))
+        {
+        //pickups[i].x = 1000;
+        pickups.splice(i, 1);
+        /*----------INSTRUCTION------------
+        increase the score by one
+        -----------------------------------*/
+        score= score += 1
+        }
+
         pickups[i].render();
     }
 
@@ -133,8 +142,9 @@ function main()
     ctx.font = "64px Arial";
     ctx.fillStyle = "black";
     ctx.fillText("Score:",100,60);
-    ctx.fillText("(score)", 100, 125)
+    ctx.fillText(score, 100, 125)
 }
+
 
 //random number generator
 function rand(_low, _high)
