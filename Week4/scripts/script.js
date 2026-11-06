@@ -21,6 +21,8 @@ var acceleration = 0.3;
 var friction = 0.9;
 
 var score = 0;
+var hits = 0;
+var shootSound = new Audio("audio/driken5482-retro-laser-1-236669.mp3");
 
 function createStar(){
     var star = {
@@ -68,16 +70,16 @@ var shootCooldown = 0
 //on key pressed
 document.addEventListener("keydown", function(e){
     console.log(e.key);
-    if(e.key == "a"){
+    if(e.key == "a"||e.key == "A"){
         a = true;
     }
-    if(e.key == "d"){
+    if(e.key == "d"||e.key == "D"){
         d = true;
     }
-    if(e.key == "w"){
+    if(e.key == "w"||e.key == "W"){
         w = true;
     }
-    if(e.key == "s"){
+    if(e.key == "s"||e.key == "S"){
         s = true;
     }
     if(e.code == "Space"){
@@ -108,6 +110,7 @@ document.addEventListener("keyup", function(e){
 
 //This is our Game Loop Function
 function game(){
+    
     //clear the screen
     ctx.clearRect(0,0,canvas.width,canvas.height);
     startPoint.x += moveDirection.x;
@@ -130,7 +133,6 @@ function game(){
     if(a == true){
         //shipSprite.x -= 1
         shipSprite.moveX -= acceleration
-        console.log("MoveX")
     }
 
     if(d == true){
@@ -189,6 +191,7 @@ function game(){
             speed:8,
             color:"white"
         });
+        shootSound.play();
         shootCooldown = 10;
     }
 
@@ -239,6 +242,8 @@ for(var i = bullets.length -1; i>=0; i--){
         startPoint.x = 100000;
         moveDirection.x = 0;
         moveDirection.y = 0;
+        hits++;
+        setTimeout(reappear, 3000);
         continue;
     }
 
@@ -246,6 +251,7 @@ for(var i = bullets.length -1; i>=0; i--){
         if(shipToStarCollision(bullet, stars[j])){
             stars[j].x = Math.random() * canvas.width;
             stars[j].y = -Math.random() * canvas.height;
+            hits++;
             continue;
         }
     }
@@ -263,6 +269,7 @@ for(var i = bullets.length -1; i>=0; i--){
     //
     ctx.font = "30px Arial"
     ctx.fillText(`Score: ${score}`, 30,80);
+    ctx.fillText(`Hits: ${hits}`, 650,80);
 }
 
 function shipToStarCollision(obj,star){
@@ -274,4 +281,11 @@ function shipToStarCollision(obj,star){
 
     var dist = dx * dx + dy * dy
     return dist <= star.radius * star.radius;
+}
+
+function reappear(){
+    startPoint.x = canvas.width/2;
+    startPoint.y = canvas.height/2;
+    moveDirection.x = ((Math.random()*2)-(Math.random()*2));
+    moveDirection.y = ((Math.random()*2)-(Math.random()*2));
 }
